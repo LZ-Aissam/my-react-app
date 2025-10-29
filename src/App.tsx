@@ -28,11 +28,11 @@ export default function App() {
   }
 
   return (
-    <div style={{ maxWidth: 1000, margin: "24px auto", padding: "0 16px" }}>
+    <div>
       <h1>To-Do List</h1>
 
       {data?.results?.[0]?.email && (
-        <p>Premier utilisateur (fetch direct) : {data.results[0].email}</p>
+        <p>Premier utilisateur : {data.results[0].email}</p>
       )}
 
       <TodoInput valeur={saisie} onChange={setSaisie} onAdd={ajouterTache} />
