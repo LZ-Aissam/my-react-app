@@ -1,4 +1,4 @@
-import { Component, useState } from "react";
+import { useState } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoTable, { type Task } from "./components/TodoTable";
 import { useFetch } from "./hooks/useFetch";
@@ -37,7 +37,28 @@ export default function App() {
     <div>
       <h1>To-Do List</h1>
 
+      <br />
+
       <ComponentB />
+
+      <br />
+
+      <div>
+        <div>
+          <span>FirstName</span>
+          <input type="text" value={inputFirstName} onChange={(e) => setInputFirstName(e.target.value)}/>
+        </div>
+
+        <div>
+          <span>LastName</span>
+          <input type="text" value={inputLastName} onChange={(e) => setInputLastName(e.target.value)}/>
+        </div>
+
+        <button onClick={() => verifyAdmin(inputFirstName, inputLastName)}>Vérifier Admin</button>
+        <button onClick={() => verifyAdmin("", "")}>Réinitialiser Admin</button>
+      </div>
+
+      <br />
 
       {data?.results?.[0]?.email && (
         <p>Premier utilisateur : {data.results[0].email}</p>
