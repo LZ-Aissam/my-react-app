@@ -1,17 +1,23 @@
-import { useState } from "react";
+import { Component, useState } from "react";
 import TodoInput from "./components/TodoInput";
 import TodoTable, { type Task } from "./components/TodoTable";
 import { useFetch } from "./hooks/useFetch";
 import UsersSection from "./components/UsersSection";
 import type { RandomUserAPIResponse } from "./types/user";
+import { useUserContext } from "./hooks/useUserContext";
+import { ComponentB } from "./components/ComponentB";
 
 export default function App() {
   const [saisie, setSaisie] = useState<string>("");
   const [taches, setTaches] = useState<Task[]>([]);
+  const [inputFirstName, setInputFirstName] = useState<string>("");
+  const [inputLastName, setInputLastName] = useState<string>("");
+  const {isAdmin, verifyAdmin} = useUserContext();
 
   const { data, error, isLoading } = useFetch<RandomUserAPIResponse>(
     "https://randomuser.me/api/?results=20"
   );
+  
 
   const ajouterTache = () => {
     if (saisie.trim() === "") return;
@@ -30,6 +36,8 @@ export default function App() {
   return (
     <div>
       <h1>To-Do List</h1>
+
+      <ComponentB />
 
       {data?.results?.[0]?.email && (
         <p>Premier utilisateur : {data.results[0].email}</p>
